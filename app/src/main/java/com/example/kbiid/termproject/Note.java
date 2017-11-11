@@ -1,37 +1,34 @@
 package com.example.kbiid.termproject;
 
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 
 /**
  * Created by kbiid on 2017-11-08.
  */
 
-public class Note extends Thread{
+public class Note{
 
-    private Bitmap noteBasicImage = BitmapFactory.decodeFile("/res/drawable/note.png");
-
+    //private Bitmap noteBasicImage = BitmapFactory.decodeResource(getResources(), R.drawable.note);
+    private Bitmap noteBasicImage;
     private int x,y;
-    private String noteType;
 
-    public Note(int x,int y,String noteType){
+    public Note(int x,int y){
         this.x = x;
         this.y = y;
-        this.noteType = noteType;
+    }
+
+    public void setBitmap(Bitmap bitmap){
+        noteBasicImage = bitmap;
     }
 
     public void screenDraw(Canvas g){
-        if(noteType.equals("short")){
-            g.drawBitmap(noteBasicImage,x,y,null);
-        }
-        else if(noteType.equals("long")){
-            g.drawBitmap(noteBasicImage,x,y,null);
-            g.drawBitmap(noteBasicImage,x+100,y,null);
-        }
+        //if(noteBasicImage == null)
+        g.drawBitmap(noteBasicImage,x,y,null);
     }
 
-    public void run(){
-
+    public void drop(int y){
+        this.y += y;
     }
+
 }
