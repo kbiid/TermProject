@@ -21,6 +21,7 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private ArrayList<Note> noteList = new ArrayList<Note>();
     SurfaceHolder holder;
     private Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.note);
+    private int note_speed = 5;
 
     public NoteSurfaceView(Context context){
         super(context);

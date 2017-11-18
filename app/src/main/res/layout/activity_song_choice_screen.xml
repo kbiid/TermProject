@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.kbiid.termproject.SongChoiceScreenActivity"
+    android:orientation="vertical">
+
+    <ViewFlipper
+        android:id="@+id/flipper"
+        android:layout_width="match_parent"
+        android:layout_height="327dp"
+        android:layout_weight="2.63">
+
+        <ImageView
+            android:id="@+id/mightyLove"
+            android:layout_width="match_parent"
+            android:layout_height="323dp"
+            android:src="@drawable/mightylove" />
+
+        <ImageView
+            android:id="@+id/dreams"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/dreams" />
+
+        <ImageView
+            android:id="@+id/caffein"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/caffeinrush" />
+
+    </ViewFlipper>
+
+    <TextView
+        android:id="@+id/songName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1.85" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ScoreView"
+        android:layout_weight="2"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="68dp"
+        android:orientation="horizontal">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/previousButton"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/previousbutton"
+            android:onClick="myOnclick"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/nextButton"
+            android:drawableTop="@drawable/nextbutton"
+            android:onClick="myOnclick"/>
+    </LinearLayout>
+</LinearLayout>

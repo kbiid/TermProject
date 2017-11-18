@@ -1,6 +1,7 @@
 package com.example.kbiid.termproject;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
 
         textViewUserEmail = (TextView) findViewById(R.id.textviewUserEmail);
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view == buttonStart) {
             Toast.makeText(this, "게임시작", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, GamePlayActivity.class));
+            startActivity(new Intent(this, SongChoiceScreenActivity.class));
         }
         if(view == buttonExplain) {
             Toast.makeText(this, "게임방법", Toast.LENGTH_SHORT).show();
