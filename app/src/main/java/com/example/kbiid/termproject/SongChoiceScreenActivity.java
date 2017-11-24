@@ -1,5 +1,6 @@
 package com.example.kbiid.termproject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MotionEvent;
@@ -16,6 +17,8 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
     private TextView score;
     private  Animation showin;
     private Game gameData;
+    private Intent intent;
+    private Bundle bundle;
 
 
     @Override
@@ -28,10 +31,14 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
         score = (TextView)findViewById(R.id.ScoreView);
 
         gameData = new Game();
-        //flipper.setDisplayedChild(count);
-        showFlipper();
+        flipper.setDisplayedChild(1);
+        //gameData.setSongname("Dreams - JoaKim Karud");
         //songName.setText(gameData.getSongname());
+
+        //gameData.setSongAddress(R.raw.dreams_joakim_karud);
         //score.setText(Integer.toString(gameData.getScore()));
+
+        showFlipper();
 
     }
 
@@ -45,8 +52,8 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
                 flipper.setInAnimation(showin);
                 flipper.setOutAnimation(this, R.anim.slide_out_left);
 
-                showFlipper();
                 flipper.showPrevious();
+                showFlipper();
 
                 break;
             case R.id.nextButton:
@@ -56,8 +63,9 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
                 flipper.setInAnimation(showin);
                 flipper.setOutAnimation(this, android.R.anim.slide_out_right);
 
-                showFlipper();
                 flipper.showNext();
+                showFlipper();
+
                 break;
         }
     }
@@ -66,18 +74,40 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
     public boolean onTouchEvent(MotionEvent touchevent){
         switch (flipper.getDisplayedChild()){
             case 0:
+                intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
+                bundle = new Bundle();
+                bundle.putSerializable("gameData",gameData);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
                 break;
+
             case 1:
+                intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
+                bundle = new Bundle();
+                bundle.putSerializable("gameData",gameData);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
                 break;
+
             case 2:
+                intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
+                bundle = new Bundle();
+                bundle.putSerializable("gameData",gameData);
+                intent.putExtras(bundle);
+
+                startActivity(intent);
                 break;
         }
 
         return false;
     }
 
+    //뷰플리퍼 사진마다 이름과 점수 표시
     public void showFlipper(){
         switch (flipper.getDisplayedChild()){
+
             case 0:
                 gameData.setSongname("Mighty Love - Joakim Karud");
                 songName.setText(gameData.getSongname());
@@ -93,6 +123,7 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
 
                 gameData.setSongAddress(R.raw.dreams_joakim_karud);
                 score.setText(Integer.toString(gameData.getScore()));
+
                 break;
 
             case 2:
@@ -101,6 +132,7 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
 
                 gameData.setSongAddress(R.raw.jacob_tillberg_caffeinerush);
                 score.setText(Integer.toString(gameData.getScore()));
+
                 break;
         }
     }

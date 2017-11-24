@@ -19,26 +19,29 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     private NoteAnimation thread;
     private ArrayList<Note> noteList = new ArrayList<Note>();
-    SurfaceHolder holder;
+    private SurfaceHolder holder;
     private Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.note);
     private int note_speed = 5;
+    //private Canvas canvas;
 
-    public NoteSurfaceView(Context context){
+    /*public NoteSurfaceView(Context context){
         super(context);
         holder = getHolder();
         holder.addCallback(this);
-        //dropNotes();
 
+        //canvas = holder.lockCanvas(null);
+        //canvas.drawColor(Color.WHITE);
 
         thread = new NoteAnimation();
-    }
+    }*/
 
     public NoteSurfaceView(Context context,AttributeSet attr){
         super(context,attr);
         holder = getHolder();
         holder.addCallback(this);
-        //dropNotes();
 
+        //canvas = holder.lockCanvas(null);
+        //canvas.drawColor(Color.WHITE);
 
         thread = new NoteAnimation();
     }
@@ -58,33 +61,30 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     class NoteAnimation extends Thread{
         public void run(){
-            while (true){
-                Canvas canvas = holder.lockCanvas(null);
+            while (true) {
 
-                canvas.drawColor(Color.WHITE);
-                synchronized (holder){
-                    for(int idx=0; idx<noteList.size(); idx++){
+                    Canvas canvas = holder.lockCanvas();
+                    if(canvas == null) break;
+                    canvas.drawColor(Color.WHITE);
+
+                synchronized (holder) {
+                    for (int idx = 0; idx < noteList.size(); idx++) {
                         Note note = noteList.get(idx);
                         note.setBitmap(bitmap);
-                        note.screenDraw(canvas);
-                        //note.drop((int)getY());
-
+                        //note.screenDraw(canvas);
+                        note.drop(note_speed);
                         note.screenDraw(canvas);
                     }
                 }
-                holder.unlockCanvasAndPost(canvas);
+                    holder.unlockCanvasAndPost(canvas);
             }
         }
     }
 
     public void dropNotes(){
-        noteList.add(new Note(0,120));
-        //bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.note);
-        noteList.add(new Note(120,580));
-        noteList.add(new Note(228,500));
-        noteList.add(new Note(320,340));
-        noteList.add(new Note(560,325));
-        noteList.add(new Note(450,305));
-        noteList.add(new Note(780,305));
+        noteList.add(new Note(0,0));
+        noteList.add(new Note(192,0));
+        noteList.add(new Note(384,0));
+        noteList.add(new Note(576,0));
     }
 }

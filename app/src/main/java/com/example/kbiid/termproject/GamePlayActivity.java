@@ -3,6 +3,7 @@ package com.example.kbiid.termproject;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class GamePlayActivity extends AppCompatActivity {
@@ -10,6 +11,7 @@ public class GamePlayActivity extends AppCompatActivity {
     private TextView score;
     private TextView combo;
     private NoteSurfaceView view;
+    private ImageView img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,5 +25,6 @@ public class GamePlayActivity extends AppCompatActivity {
         score.setText("Score : ");
         combo.setText("Combo : ");
         view = (NoteSurfaceView)findViewById(R.id.noteView);
+        img = (ImageView)findViewById(R.id.judge);
     }
 }
