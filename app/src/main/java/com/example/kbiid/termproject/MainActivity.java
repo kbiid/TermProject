@@ -1,10 +1,16 @@
 package com.example.kbiid.termproject;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        FirebaseUser user = firebaseAuth.getCurrentUser();
 
         textViewUserEmail.setText("리듬게임");
         buttonStart.setOnClickListener(this);
@@ -51,7 +56,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, SongChoiceScreenActivity.class));
         }
         if(view == buttonExplain) {
-            Toast.makeText(this, "게임방법", Toast.LENGTH_SHORT).show();
+            Context mContext = getApplicationContext();
+            LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.dialog,(ViewGroup) findViewById(R.id.manulayout));
+            AlertDialog.Builder aDialog = new AlertDialog.Builder(MainActivity.this);
+            aDialog.setTitle("게임방법");
+            aDialog.setView(layout);
+            aDialog.setNegativeButton("닫기", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            AlertDialog ad = aDialog.create();
+            ad.show();
         }
         if(view == buttonLogout) {
             firebaseAuth.signOut();
