@@ -5,10 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
+    android:background="#0000ff"
     tools:context="com.example.kbiid.termproject.Lodding">
 
     <ImageView
-        android:src="@mipmap/ic_launcher"
+        android:src="@drawable/loadimg"
         android:layout_gravity="center_horizontal"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
