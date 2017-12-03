@@ -13,9 +13,9 @@ public class Note{
     private int x,y;
     private String noteType;
     private int time;
+    private boolean proceed = false;
 
     public Note(String noteType,int time){
-        //y = 0;
 
         if(noteType.equals("A")){
             x = 0;
@@ -60,6 +60,14 @@ public class Note{
 
     public int getY(){
         return y;
+    }
+
+    public void setProceed(){
+        proceed = true;
+    }
+
+    public boolean getProceed(){
+        return proceed;
     }
 
 }

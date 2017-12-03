@@ -6,12 +6,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.media.MediaPlayer;
+import android.os.Message;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.ImageView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kbiid on 2017-11-10.
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 
 public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
+    private static final int noteMsg = 1, noteMsg2 = 2;
     private NoteAnimation thread;
     private ArrayList<Note> noteList = new ArrayList<Note>();
     private SurfaceHolder holder;
@@ -27,9 +29,7 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     private MediaPlayer mediaPlayer;
     private String songName;
     private static final int Reach_Time = 1;
-    private ImageView judgeA, judgeB,judgeC,judgeD;
-    private int myscore = 0,mycombo = 0;
-    private Note mynote;
+    public static List<Note> mynoteList = new ArrayList<Note>();
 
     /*public NoteSurfaceView(Context context){
         super(context);
@@ -46,40 +46,11 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
         super(context,attr);
         holder = getHolder();
         holder.addCallback(this);
-        judgeA = (ImageView)findViewById(R.id.judgeA);
-        judgeB = (ImageView)findViewById(R.id.judgeB);
-        judgeC = (ImageView)findViewById(R.id.judgeC);
-        judgeD = (ImageView)findViewById(R.id.judgeD);
 
         //canvas = holder.lockCanvas(null);
         //canvas.drawColor(Color.WHITE);
 
         thread = new NoteAnimation();
-
-        /*judgeA.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                judgeline(mynote);
-            }
-        });
-        judgeB.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                judgeline(mynote);
-            }
-        });
-        judgeC.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                judgeline(mynote);
-            }
-        });
-        judgeD.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                judgeline(mynote);
-            }
-        });*/
 
     }
 
@@ -109,25 +80,22 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
                     for (int idx = 0; idx < noteList.size(); idx++) {
                         if (noteList.get(idx).getTime() <= mediaPlayer.getCurrentPosition()) {
-                            final Note note = noteList.get(idx);
-                            mynote = note;
+                            Note note = noteList.get(idx);
                             note.setBitmap(bitmap);
                             //note.screenDraw(canvas);
                             note.drop(note_speed);
                             note.screenDraw(canvas);
-                            switch (note.getNoteType()){
-                                case "A" :
-                                    judge(note);
-                                    break;
-                                case "B" :
-                                    judge(note);
-                                    break;
-                                case "C" :
-                                    judge(note);
-                                    break;
-                                case "D" :
-                                    judge(note);
-                                    break;
+                            if((note.getY() > 1820) && (note.getProceed() == false)) {
+                                note.setProceed();
+                                Message msg = GamePlayActivity.mHandler.obtainMessage(noteMsg2, note);
+                                GamePlayActivity.mHandler.sendMessage(msg);
+                            }
+                            else if(note.getProceed() == true ){
+                                continue;
+                            }
+                            else {
+                                Message msg = GamePlayActivity.mHandler.obtainMessage(noteMsg, note);
+                                GamePlayActivity.mHandler.sendMessage(msg);
                             }
                         }
                     }
@@ -180,34 +148,34 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
             noteList.add(new Note("A",startTime + gap * 2));
             noteList.add(new Note("B",startTime + gap * 4));
-            noteList.add(new Note("A",startTime + gap * 2));
-            noteList.add(new Note("B",startTime + gap * 4));
-            noteList.add(new Note("A",startTime + gap * 6));
-            noteList.add(new Note("B",startTime + gap * 8));
-            noteList.add(new Note("A",startTime + gap * 10));
-            noteList.add(new Note("C",startTime + gap * 12));
-            noteList.add(new Note("D",startTime + gap * 14));
-            noteList.add(new Note("C",startTime + gap * 16));
-            noteList.add(new Note("D",startTime + gap * 18));
+            //noteList.add(new Note("A",startTime + gap * 2));
+            //noteList.add(new Note("B",startTime + gap * 4));
+            //noteList.add(new Note("A",startTime + gap * 6));
+            //noteList.add(new Note("B",startTime + gap * 8));
+            //noteList.add(new Note("A",startTime + gap * 10));
+            //noteList.add(new Note("C",startTime + gap * 12));
+            //noteList.add(new Note("D",startTime + gap * 14));
+            //noteList.add(new Note("C",startTime + gap * 16));
+            //noteList.add(new Note("D",startTime + gap * 18));
             noteList.add(new Note("C",startTime + gap * 20));
-            noteList.add(new Note("D",startTime + gap * 22));
-            noteList.add(new Note("C",startTime + gap * 24));
-            noteList.add(new Note("A",startTime + gap * 26));
-            noteList.add(new Note("B",startTime + gap * 28));
-            noteList.add(new Note("A",startTime + gap * 30));
-            noteList.add(new Note("B",startTime + gap * 32));
-            noteList.add(new Note("A",startTime + gap * 36));
-            noteList.add(new Note("B",startTime + gap * 38));
-            noteList.add(new Note("C",startTime + gap * 40));
-            noteList.add(new Note("D",startTime + gap * 42));
-            noteList.add(new Note("C",startTime + gap * 44));
-            noteList.add(new Note("A",startTime + gap * 46));
-            noteList.add(new Note("B",startTime + gap * 48));
-            noteList.add(new Note("C",startTime + gap * 49));
-            noteList.add(new Note("D",startTime + gap * 50));
-            noteList.add(new Note("A",startTime + gap * 52));
-            noteList.add(new Note("B",startTime + gap * 52));
-            noteList.add(new Note("C",startTime + gap * 52));
+            //noteList.add(new Note("D",startTime + gap * 22));
+            //noteList.add(new Note("C",startTime + gap * 24));
+           // noteList.add(new Note("A",startTime + gap * 26));
+            //noteList.add(new Note("B",startTime + gap * 28));
+            //noteList.add(new Note("A",startTime + gap * 30));
+            //noteList.add(new Note("B",startTime + gap * 32));
+            noteList.add(new Note("C",startTime + gap * 36));
+            //noteList.add(new Note("B",startTime + gap * 38));
+            //noteList.add(new Note("C",startTime + gap * 40));
+            //noteList.add(new Note("D",startTime + gap * 42));
+            //noteList.add(new Note("C",startTime + gap * 44));
+            //noteList.add(new Note("A",startTime + gap * 46));
+            //noteList.add(new Note("B",startTime + gap * 48));
+            //noteList.add(new Note("C",startTime + gap * 49));
+            //noteList.add(new Note("D",startTime + gap * 50));
+            //noteList.add(new Note("A",startTime + gap * 52));
+            //noteList.add(new Note("B",startTime + gap * 52));
+            //noteList.add(new Note("C",startTime + gap * 52));
         }
         else if(songName.equals("Caffeine Rush - Jacob Tillberg")){
             int startTime = 1000 - (Reach_Time * 1000);
@@ -250,45 +218,5 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
     public void setMediaPlayer(MediaPlayer mediaPlayer,String songName){
         this.mediaPlayer = mediaPlayer;
         this.songName = songName;
-    }
-
-    public void judgeline(Note note){
-        switch (note.getNoteType()){
-            case "A" :
-                judge(note);
-                break;
-            case "B" :
-                judge(note);
-                break;
-            case "C" :
-                judge(note);
-                break;
-            case "D" :
-                judge(note);
-                break;
-        }
-    }
-
-    public void judge(Note note){
-        if(note.getY() < 1200 || note.getY() > 1320) {
-            myscore -= 100;
-            if (myscore <= 0) myscore = 0;
-        }
-        else if(note.getY() >= 1200 || note.getY() <= 1280){
-            mycombo ++;
-            myscore += 80;
-        }
-        else if(note.getY() >= 1220 ||  note.getY() <= 1260){
-            mycombo ++;
-            myscore += 150;
-        }
-    }
-
-    public int getMyscore(){
-        return myscore;
-    }
-
-    public int getMycombo(){
-        return mycombo;
     }
 }

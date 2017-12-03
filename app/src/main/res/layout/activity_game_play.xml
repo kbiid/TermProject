@@ -30,9 +30,9 @@
         android:id="@+id/frameLayout">
 
         <com.example.kbiid.termproject.NoteSurfaceView
+            android:id="@+id/noteView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/noteView"
             android:layout_weight="5" />
 
         <Button
