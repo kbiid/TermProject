@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Message;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
@@ -85,17 +86,21 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                             //note.screenDraw(canvas);
                             note.drop(note_speed);
                             note.screenDraw(canvas);
-                            if((note.getY() > 1820) && (note.getProceed() == false)) {
-                                note.setProceed();
+                            if((note.getY() > 1810) && (note.getProceed() == false)) {
                                 Message msg = GamePlayActivity.mHandler.obtainMessage(noteMsg2, note);
                                 GamePlayActivity.mHandler.sendMessage(msg);
+                                note.setProceed();
+                                Log.d("Note : ","1");
+                                //noteList.remove(idx);
                             }
-                            else if(note.getProceed() == true ){
-                                continue;
+                            else if(note.getProceed()){
+                                Log.d("Note : ","2");
+                                noteList.remove(idx);
                             }
                             else {
                                 Message msg = GamePlayActivity.mHandler.obtainMessage(noteMsg, note);
                                 GamePlayActivity.mHandler.sendMessage(msg);
+                                //noteList.remove(idx);
                             }
                         }
                     }

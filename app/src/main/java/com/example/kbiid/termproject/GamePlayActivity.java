@@ -72,21 +72,23 @@ public class GamePlayActivity extends AppCompatActivity {
         judgeA.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(noteListA.size() <= countA)) {
-                    judge(noteListA.get(countA));
-                    noteListA.get(countA).setProceed();
-                    countA++;
-                }
+                //if(!(noteListA.size() <= countA)) {
+                    judge(noteListA.get(0));
+                    noteListA.get(0).setProceed();
+                    noteListA.remove(0);
+                    //countA++;
+                //}
             }
         });
         judgeB.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(noteListB.size() <= countB)) {
-                    judge(noteListB.get(countB));
-                    noteListB.get(countB).setProceed();
-                    countB++;
-                }
+                //if(!(noteListB.size() <= countB)) {
+                    judge(noteListB.get(0));
+                    noteListB.get(0).setProceed();
+                    noteListB.remove(0);
+                    //countB++;
+                //}
                 //judge(noteListB.get(0));
                 //noteListB.get(0).setProceed();
                 //noteListB.remove(0);
@@ -95,11 +97,12 @@ public class GamePlayActivity extends AppCompatActivity {
         judgeC.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(noteListC.size() <= countC)) {
-                    judge(noteListC.get(countC));
-                    noteListC.get(countC).setProceed();
-                    countC++;
-                }
+                //if(!(noteListC.size() <= countC)) {
+                    judge(noteListC.get(0));
+                    noteListC.get(0).setProceed();
+                    noteListC.remove(0);
+                    //countC++;
+                //}
                 //judge(noteListC.get(0));
                 //noteListC.get(0).setProceed();
                 //noteListC.remove(0);
@@ -108,11 +111,12 @@ public class GamePlayActivity extends AppCompatActivity {
         judgeD.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!(noteListD.size() <= countD)) {
-                    judge(noteListD.get(countD));
-                    noteListD.get(countD).setProceed();
-                    countD++;
-                }
+                //if(!(noteListD.size() <= countD)) {
+                    judge(noteListD.get(0));
+                    noteListD.get(0).setProceed();
+                    noteListD.remove(0);
+                    //countD++;
+                //}
                 //judge(noteListD.get(0));
                 //noteListD.get(0).setProceed();
                 //noteListD.remove(0);
@@ -160,12 +164,12 @@ public class GamePlayActivity extends AppCompatActivity {
     }
 
     public void judge(Note note){
-        if((note.getY() > 1820)  && (note.getProceed() == false)) {
+        if((note.getY() > 1810) && (note.getProceed() == false)) {
             myCombo = 0;
             myScore -= 100;
             if (myScore <= 0) myScore = 0;
         }
-        else if(note.getY() >= 1720 || note.getY() < 1820) {
+        else if((note.getY() >= 1720 || note.getY() < 1800) && (note.getProceed() == false)) {
             if(note.getY() >= 1750 ||  note.getY() < 1810){
                 myCombo ++;
                 myScore += 150;
