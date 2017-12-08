@@ -26,12 +26,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Button buttonExplain;
     private Button buttonLogout;
     private Button buttonExit;
+    long backKeyPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_main);
+
+        //초기화
+        backKeyPressedTime = System.currentTimeMillis();
 
         textViewUserEmail = (TextView) findViewById(R.id.textviewUserEmail);
         buttonStart = (Button) findViewById(R.id.buttonStart);
@@ -40,6 +44,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         buttonExit = (Button) findViewById(R.id.buttonExit);
 
         firebaseAuth = FirebaseAuth.getInstance();
+        //로그인기록이 없으면 LoginActivity로 이동
         if(firebaseAuth.getCurrentUser() == null) {
             finish();
             startActivity(new Intent(this, LoginActivity.class));
@@ -80,6 +85,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view == buttonExit) {
             finish();
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        //1번째 백버튼 클릭
+        if(System.currentTimeMillis()>backKeyPressedTime+2000){
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(this, "뒤로버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+        //2번째 백버튼 클릭 (종료)
+        else{
+            finish();
+            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 }

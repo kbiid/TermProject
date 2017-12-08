@@ -23,6 +23,8 @@ public class Music {
         mediaPlayer.stop();
     }
 
+    public void musicPause() { mediaPlayer.pause(); }
+
     public MediaPlayer getMediaPlayer(){
         return mediaPlayer;
     }

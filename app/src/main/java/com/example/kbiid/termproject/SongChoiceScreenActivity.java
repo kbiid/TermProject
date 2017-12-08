@@ -136,4 +136,10 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
                 break;
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class));
+       }
 }

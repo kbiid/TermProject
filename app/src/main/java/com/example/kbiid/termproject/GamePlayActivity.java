@@ -13,13 +13,13 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class GamePlayActivity extends AppCompatActivity {
+public class GamePlayActivity extends AppCompatActivity implements View.OnClickListener {
 
     public static TextView score,combo;
     private NoteSurfaceView view;
     private Game gameData;
     private Intent intent;
-    private Button btn;
+    private Button btn, stopgameBtn;
     private Music music;
     public static ImageView judgeA, judgeB,judgeC,judgeD;
     public static Handler mHandler;
@@ -38,6 +38,7 @@ public class GamePlayActivity extends AppCompatActivity {
         judgeC = (ImageView)findViewById(R.id.judgeC);
         judgeD = (ImageView)findViewById(R.id.judgeD);
         btn = (Button)findViewById(R.id.startButton);
+        stopgameBtn = (Button)findViewById(R.id.stopgameBtn);
         score = (TextView)findViewById(R.id.scoreView);
         combo = (TextView)findViewById(R.id.comboView);
         score.setText("Score : ");
@@ -55,20 +56,21 @@ public class GamePlayActivity extends AppCompatActivity {
 
         GamePlayActivity.combo.setText("Combo: " + Integer.toString(myCombo));
         GamePlayActivity.score.setText("Score: " + Integer.toString(myScore));
-        view.setVisibility(View.INVISIBLE);
+        //view.setVisibility(View.INVISIBLE);
+        btn.setVisibility(View.GONE);
+        view.setVisibility(View.VISIBLE);
         intent = getIntent();
         gameData = (Game)intent.getSerializableExtra("gameData");
         music = new Music(this,gameData.getSongAddress());
         view.setMediaPlayer(music.getMediaPlayer(),gameData.getSongname());
-
+        stopgameBtn.setOnClickListener(this);
+/*
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                btn.setVisibility(View.GONE);
-                view.setVisibility(View.VISIBLE);
             }
         });
-
+*/
         judgeA.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -181,5 +183,29 @@ public class GamePlayActivity extends AppCompatActivity {
         }
         GamePlayActivity.combo.setText("Combo: " + Integer.toString(myCombo));
         GamePlayActivity.score.setText("Score: " + Integer.toString(myScore));
+    }
+
+    public void onPause() {
+        super.onPause();
+        music.musicPause();
+    }
+
+    public void onResume() {
+        super.onResume();
+        music.musicStart();
+    }
+
+    @Override
+    public void onBackPressed() {
+        GamePlayActivity.super.onPause();
+        startActivity(new Intent(this, GamestopPop.class));
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view == stopgameBtn) {
+            GamePlayActivity.super.onPause();
+            startActivity(new Intent(this, GamestopPop.class));
+        }
     }
 }

@@ -26,6 +26,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     TextView textviewSingin;
     ProgressDialog progressDialog;
     FirebaseAuth firebaseAuth;
+    long backKeyPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +35,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_login);
         firebaseAuth = FirebaseAuth.getInstance();
 
+        //초기화
+        backKeyPressedTime = System.currentTimeMillis();
+
+        //로그인이 돼있다면
         if(firebaseAuth.getCurrentUser() != null){
             finish();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
@@ -88,6 +93,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         if(view == textviewSingin) {
             finish();
             startActivity(new Intent(this, RegisterActivity.class));
+        }
+    }
+    @Override
+    public void onBackPressed() {
+        //1번째 백버튼 클릭
+        if(System.currentTimeMillis()>backKeyPressedTime+2000){
+            backKeyPressedTime = System.currentTimeMillis();
+            Toast.makeText(this, "뒤로버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        }
+        //2번째 백버튼 클릭 (종료)
+        else{
+            finish();
+            System.exit(0);
+            android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 }
