@@ -16,12 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GamePlayActivity" >
-       </activity>
+        <activity android:name=".GamePlayActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".SongChoiceScreenActivity"></activity>
+        <activity android:name=".SongChoiceScreenActivity" />
+        <activity android:name=".GamestopPop" android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>
