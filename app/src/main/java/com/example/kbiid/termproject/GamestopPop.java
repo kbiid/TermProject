@@ -3,6 +3,7 @@ package com.example.kbiid.termproject;
 import android.content.Intent;
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -11,6 +12,8 @@ import android.widget.Button;
 public class GamestopPop extends Activity implements View.OnClickListener {
 
     private Button newGame, restart, songchoice;
+    private Game gameData;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,10 @@ public class GamestopPop extends Activity implements View.OnClickListener {
         newGame.setOnClickListener(this);
         restart.setOnClickListener(this);
         songchoice.setOnClickListener(this);
+
+        intent = getIntent();
+        gameData = (Game)intent.getSerializableExtra("gameData");
+
     }
 
     @Override
@@ -46,15 +53,27 @@ public class GamestopPop extends Activity implements View.OnClickListener {
     @Override
     public void onClick(View view) {
         if(view == newGame) {
+            Intent i = new Intent(getApplicationContext(), GamePlayActivity.class);
+            Bundle bundle1 = new Bundle();
+            bundle1.putSerializable("gameData",gameData);
+            i.putExtras(bundle1);
+            i.putExtra("result", "NewGame");
+            setResult(RESULT_OK, i);
+
+            //액티비티(팝업) 닫기
             finish();
-            startActivity(new Intent(this, GamePlayActivity.class));
         }
         if(view == restart) {
+            Intent intent = new Intent(getApplicationContext(), GamePlayActivity.class);
+            intent.putExtra("result", "Re");
+            setResult(RESULT_OK, intent);
             finish();
         }
         if(view == songchoice) {
+            Intent intent = new Intent(getApplicationContext(), GamePlayActivity.class);
+            intent.putExtra("result", "SongChoice");
+            setResult(RESULT_OK, intent);
             finish();
-            startActivity(new Intent(this, SongChoiceScreenActivity.class));
         }
     }
 }

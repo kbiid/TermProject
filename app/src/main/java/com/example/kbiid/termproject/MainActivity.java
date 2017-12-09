@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if(view == buttonStart) {
+            finish();
             Toast.makeText(this, "게임시작", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, SongChoiceScreenActivity.class));
         }
@@ -84,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(new Intent(this, LoginActivity.class));
         }
         if(view == buttonExit) {
+            Log.d("Finish", "Finish");
             finish();
         }
     }

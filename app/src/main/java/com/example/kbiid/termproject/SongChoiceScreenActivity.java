@@ -3,6 +3,7 @@ package com.example.kbiid.termproject;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
@@ -20,6 +21,7 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
     private Intent intent;
     private Bundle bundle;
 
+    private int sum=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,38 +74,22 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
 
     //뷰플리퍼 클릭 이벤트
     public boolean onTouchEvent(MotionEvent touchevent){
-        switch (flipper.getDisplayedChild()){
-            case 0:
-                intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
-                bundle = new Bundle();
-                bundle.putSerializable("gameData",gameData);
-                intent.putExtras(bundle);
+        sum++;
 
-                startActivity(intent);
-                break;
+        if( sum == 3 ){
+            sum = 0;
 
-            case 1:
-                intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
-                bundle = new Bundle();
-                bundle.putSerializable("gameData",gameData);
-                intent.putExtras(bundle);
+            finish();
 
-                startActivity(intent);
-                break;
+            intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
+            bundle = new Bundle();
+            bundle.putSerializable("gameData",gameData);
+            intent.putExtras(bundle);
 
-            case 2:
-                intent = new Intent(SongChoiceScreenActivity.this, GamePlayActivity.class);
-                bundle = new Bundle();
-                bundle.putSerializable("gameData",gameData);
-                intent.putExtras(bundle);
-
-                startActivity(intent);
-                break;
+            startActivity(intent);
         }
-
         return false;
     }
-
     //뷰플리퍼 사진마다 이름과 점수 표시
     public void showFlipper(){
         switch (flipper.getDisplayedChild()){

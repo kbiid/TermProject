@@ -100,7 +100,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //1번째 백버튼 클릭
         if(System.currentTimeMillis()>backKeyPressedTime+2000){
             backKeyPressedTime = System.currentTimeMillis();
-            Toast.makeText(this, "뒤로버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "뒤로버튼을 한번 더 누르시면 게임이 종료됩니다.", Toast.LENGTH_SHORT).show();
         }
         //2번째 백버튼 클릭 (종료)
         else{

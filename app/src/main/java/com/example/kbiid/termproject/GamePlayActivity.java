@@ -1,11 +1,16 @@
 package com.example.kbiid.termproject;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -25,7 +30,7 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
     public static Handler mHandler;
     private int myScore = 0,myCombo = 0;
     private ArrayList<Note> noteListA,noteListB,noteListC,noteListD;
-    private int countA=0,countB=0,countC=0,countD=0;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,13 +69,7 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
         music = new Music(this,gameData.getSongAddress());
         view.setMediaPlayer(music.getMediaPlayer(),gameData.getSongname());
         stopgameBtn.setOnClickListener(this);
-/*
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-*/
+
         judgeA.setOnClickListener(new ImageView.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -143,11 +142,6 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
         };
     }
 
-    @Override
-    protected void onDestroy(){
-        super.onDestroy();
-    }
-
     public void judgeline(Note note){
         switch (note.getNoteType()){
             case "A" :
@@ -185,14 +179,33 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
         GamePlayActivity.score.setText("Score: " + Integer.toString(myScore));
     }
 
-    public void onPause() {
-        super.onPause();
-        music.musicPause();
-    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode==1){
+            if(resultCode==RESULT_OK){
 
-    public void onResume() {
-        super.onResume();
-        music.musicStart();
+                String result = data.getStringExtra("result");
+                if( result.equals("SongChoice")) {
+                    finish();
+                    startActivity(new Intent(getApplicationContext(), SongChoiceScreenActivity.class));
+                }else if( result.equals("Re")){
+
+                }else if( result.equals("NewGame")){
+                    finish();
+
+                    Intent in = getIntent();
+                    Game getGameData = (Game)in.getSerializableExtra("gameData");
+
+
+                    Intent i = new Intent(getApplicationContext(), GamePlayActivity.class);
+                    Bundle getBundle = new Bundle();
+                    getBundle.putSerializable("gameData",getGameData);
+                    i.putExtras(getBundle);
+
+                    startActivity(i);
+                }
+            }
+        }
     }
 
     @Override
@@ -202,10 +215,40 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
     public void onClick(View view) {
         if(view == stopgameBtn) {
             GamePlayActivity.super.onPause();
-            startActivity(new Intent(this, GamestopPop.class));
+            //startActivity(new Intent(this, GamestopPop.class));
+            Intent intent = new Intent(getApplicationContext(), GamestopPop.class);
+            bundle = new Bundle();
+            bundle.putSerializable("gameData",gameData);
+            intent.putExtras(bundle);
+            startActivityForResult(intent, 1);
         }
+    }
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    public void onPause() {
+        super.onPause();
+        music.musicPause();
+
+    }
+
+    public void onResume() {
+        super.onResume();
+        music.musicStart();
     }
 }
