@@ -21,7 +21,11 @@
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".SongChoiceScreenActivity" />
-        <activity android:name=".GamestopPop" android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".GamestopPop"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity android:name=".clearPop"
+            android:theme="@android:style/Theme.Dialog" />
     </application>
 
 </manifest>
