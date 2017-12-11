@@ -14,9 +14,9 @@ public class Game implements Serializable{
     private int SongAddress;
 
     public Game(){
-        Songname = "Mighty Love - JoaKim Karud";
+        Songname = "a road - DIA";
         score = 0;
-        SongAddress = R.raw.mightylove_joakimkarud;
+        SongAddress = R.raw.a_road;
     }
 
     public void setSongname(String Songname){

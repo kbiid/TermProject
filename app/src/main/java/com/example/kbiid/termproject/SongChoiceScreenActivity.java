@@ -95,10 +95,10 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
         switch (flipper.getDisplayedChild()){
 
             case 0:
-                gameData.setSongname("Mighty Love - Joakim Karud");
+                gameData.setSongname("a road - DIA");
                 songName.setText(gameData.getSongname());
 
-                gameData.setSongAddress(R.raw.mightylove_joakimkarud);
+                gameData.setSongAddress(R.raw.a_road);
                 score.setText(Integer.toString(gameData.getScore()));
 
                 break;

@@ -22,15 +22,15 @@ public class Note{
             y = 0;
         }
         else if(noteType.equals("B")){
-            x = 270;
+            x = 360;
             y = 0;
         }
         else if(noteType.equals("C")){
-            x = 540;
+            x = 720;
             y = 0;
         }
         else if(noteType.equals("D")){
-            x = 810;
+            x = 1080;
             y = 0;
         }
         this.time = time;

@@ -86,7 +86,7 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
                             //note.screenDraw(canvas);
                             note.drop(note_speed);
                             note.screenDraw(canvas);
-                            if((note.getY() > 1810) && (note.getProceed() == false)) {
+                            if((note.getY() > 2400) && (note.getProceed() == false)) {
                                 Message msg = GamePlayActivity.mHandler.obtainMessage(noteMsg2, note);
                                 GamePlayActivity.mHandler.sendMessage(msg);
                                 note.setProceed();
@@ -112,40 +112,42 @@ public class NoteSurfaceView extends SurfaceView implements SurfaceHolder.Callba
 
     public void dropNotes(){
 
-        if(songName.equals("Mighty Love - Joakim Karud")){
+        if(songName.equals("a road - DIA")){
             int startTime = 1000 - (Reach_Time * 1000);
             int gap = 125;
 
-            noteList.add(new Note("A",startTime + gap * 2));
-            noteList.add(new Note("B",startTime + gap * 4));
-            noteList.add(new Note("A",startTime + gap * 2));
-            noteList.add(new Note("B",startTime + gap * 4));
-            noteList.add(new Note("A",startTime + gap * 6));
-            noteList.add(new Note("B",startTime + gap * 8));
-            noteList.add(new Note("A",startTime + gap * 10));
-            noteList.add(new Note("C",startTime + gap * 12));
-            noteList.add(new Note("D",startTime + gap * 14));
-            noteList.add(new Note("C",startTime + gap * 16));
+            /*
             noteList.add(new Note("D",startTime + gap * 18));
-            noteList.add(new Note("C",startTime + gap * 20));
-            noteList.add(new Note("D",startTime + gap * 22));
+            noteList.add(new Note("A",startTime + gap * 20));
+            noteList.add(new Note("B",startTime + gap * 22));
             noteList.add(new Note("C",startTime + gap * 24));
-            noteList.add(new Note("A",startTime + gap * 26));
-            noteList.add(new Note("B",startTime + gap * 28));
-            noteList.add(new Note("A",startTime + gap * 30));
-            noteList.add(new Note("B",startTime + gap * 32));
-            noteList.add(new Note("A",startTime + gap * 36));
-            noteList.add(new Note("B",startTime + gap * 38));
-            noteList.add(new Note("C",startTime + gap * 40));
-            noteList.add(new Note("D",startTime + gap * 42));
-            noteList.add(new Note("C",startTime + gap * 44));
-            noteList.add(new Note("A",startTime + gap * 46));
-            noteList.add(new Note("B",startTime + gap * 48));
-            noteList.add(new Note("C",startTime + gap * 49));
-            noteList.add(new Note("D",startTime + gap * 50));
-            noteList.add(new Note("A",startTime + gap * 52));
-            noteList.add(new Note("B",startTime + gap * 52));
-            noteList.add(new Note("C",startTime + gap * 52));
+            noteList.add(new Note("D",startTime + gap * 26));
+            noteList.add(new Note("A",startTime + gap * 28));
+            noteList.add(new Note("B",startTime + gap * 30));
+            noteList.add(new Note("C",startTime + gap * 32));
+
+            noteList.add(new Note("B",startTime + gap * 27));
+            noteList.add(new Note("C",startTime + gap * 34));
+            noteList.add(new Note("D",startTime + gap * 41));
+            noteList.add(new Note("A",startTime + gap * 48));
+            noteList.add(new Note("B",startTime + gap * 55));
+            noteList.add(new Note("C",startTime + gap * 62));
+            noteList.add(new Note("D",startTime + gap * 69));
+            noteList.add(new Note("A",startTime + gap * 76));
+            noteList.add(new Note("B",startTime + gap * 83));
+            noteList.add(new Note("C",startTime + gap * 90));
+            noteList.add(new Note("D",startTime + gap * 97));
+            noteList.add(new Note("A",startTime + gap * 104));
+            noteList.add(new Note("B",startTime + gap * 111));
+            noteList.add(new Note("C",startTime + gap * 118));
+            noteList.add(new Note("D",startTime + gap * 125));
+            noteList.add(new Note("A",startTime + gap * 132));
+            noteList.add(new Note("B",startTime + gap * 139));
+            noteList.add(new Note("C",startTime + gap * 146));
+            noteList.add(new Note("D",startTime + gap * 153));
+            noteList.add(new Note("A",startTime + gap * 160));
+            noteList.add(new Note("B",startTime + gap * 167));
+            */
         }
         else if(songName.equals("Dreams - JoaKim Karud")){
             int startTime = 1000 - (Reach_Time * 1000);

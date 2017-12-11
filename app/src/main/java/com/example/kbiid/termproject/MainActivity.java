@@ -6,6 +6,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if(view == buttonStart) {
             finish();
-            Toast.makeText(this, "게임시작", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, "게임시작", Toast.LENGTH_SHORT).show();
             startActivity(new Intent(this, SongChoiceScreenActivity.class));
         }
         if(view == buttonExplain) {

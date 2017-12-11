@@ -38,6 +38,17 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_game_play);
 
+        //이걸 사용하여 클리어창 뜨게하기
+        /*
+            Handler handler = new Handler() {
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    startActivity(new Intent(getApplicationContext(), clearPop.class));
+                }
+            };
+            handler.sendEmptyMessageDelayed(0, 3000);
+        */
+
         judgeA = (ImageView)findViewById(R.id.judgeA);
         judgeB = (ImageView)findViewById(R.id.judgeB);
         judgeC = (ImageView)findViewById(R.id.judgeC);
@@ -160,13 +171,13 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
     }
 
     public void judge(Note note){
-        if((note.getY() > 1810) && (note.getProceed() == false)) {
+        if((note.getY() > 2400) && (note.getProceed() == false)) {
             myCombo = 0;
             myScore -= 100;
             if (myScore <= 0) myScore = 0;
         }
-        else if((note.getY() >= 1720 || note.getY() < 1800) && (note.getProceed() == false)) {
-            if(note.getY() >= 1750 ||  note.getY() < 1810){
+        else if((note.getY() >= 2310 || note.getY() < 2390) && (note.getProceed() == false)) {
+            if(note.getY() >= 2350 ||  note.getY() < 2400){
                 myCombo ++;
                 myScore += 150;
             }
