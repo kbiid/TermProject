@@ -1,6 +1,7 @@
 package com.example.kbiid.termproject;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -97,27 +98,39 @@ public class SongChoiceScreenActivity extends AppCompatActivity {
             case 0:
                 gameData.setSongname("a road - DIA");
                 songName.setText(gameData.getSongname());
+                songName.setTextSize(30);
+                songName.setTextColor(Color.WHITE);
 
                 gameData.setSongAddress(R.raw.a_road);
                 score.setText(Integer.toString(gameData.getScore()));
+                score.setTextSize(30);
+                score.setTextColor(Color.WHITE);
 
                 break;
 
             case 1:
                 gameData.setSongname("Dreams - JoaKim Karud");
                 songName.setText(gameData.getSongname());
+                songName.setTextSize(30);
+                songName.setTextColor(Color.WHITE);
 
                 gameData.setSongAddress(R.raw.dreams_joakim_karud);
                 score.setText(Integer.toString(gameData.getScore()));
+                score.setTextSize(30);
+                score.setTextColor(Color.WHITE);
 
                 break;
 
             case 2:
                 gameData.setSongname("Caffeine Rush - Jacob Tillberg");
                 songName.setText(gameData.getSongname());
+                songName.setTextSize(30);
+                songName.setTextColor(Color.WHITE);
 
                 gameData.setSongAddress(R.raw.jacob_tillberg_caffeinerush);
                 score.setText(Integer.toString(gameData.getScore()));
+                score.setTextSize(30);
+                score.setTextColor(Color.WHITE);
 
                 break;
         }
