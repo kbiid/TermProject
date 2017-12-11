@@ -38,16 +38,14 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_game_play);
 
-        //이걸 사용하여 클리어창 뜨게하기
-        /*
-            Handler handler = new Handler() {
-                public void handleMessage(Message msg) {
-                    super.handleMessage(msg);
-                    startActivity(new Intent(getApplicationContext(), clearPop.class));
-                }
-            };
-            handler.sendEmptyMessageDelayed(0, 3000);
-        */
+        Handler handler = new Handler() {
+            public void handleMessage(Message msg) {
+                super.handleMessage(msg);
+                startActivity(new Intent(getApplicationContext(), clearPop.class));
+            }
+        };
+        handler.sendEmptyMessageDelayed(0, 3000);
+        
 
         judgeA = (ImageView)findViewById(R.id.judgeA);
         judgeB = (ImageView)findViewById(R.id.judgeB);
