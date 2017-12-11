@@ -44,7 +44,7 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(getApplicationContext(), clearPop.class));
             }
         };
-        handler.sendEmptyMessageDelayed(0, 3000);
+        handler.sendEmptyMessageDelayed(0, 83000);
         
 
         judgeA = (ImageView)findViewById(R.id.judgeA);
