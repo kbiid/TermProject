@@ -39,7 +39,7 @@
             android:id="@+id/noteView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="5" />
+            android:layout_weight="5"/>
 
         <Button
             android:layout_width="wrap_content"
@@ -55,34 +55,34 @@
 
             <ImageView
                 android:id="@+id/judgeA"
-                android:layout_width="102dp"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:contentDescription=""
-                android:src="@drawable/judgeline"
+                android:src="@drawable/note2"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/judgeB"
-                android:layout_width="102dp"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:contentDescription=""
-                android:src="@drawable/judgeline"
+                android:src="@drawable/note2"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/judgeC"
-                android:layout_width="102dp"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:contentDescription=""
-                android:src="@drawable/judgeline"
+                android:src="@drawable/note2"
                 tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/judgeD"
-                android:layout_width="102dp"
+                android:layout_width="90dp"
                 android:layout_height="40dp"
                 android:contentDescription=""
-                android:src="@drawable/judgeline"
+                android:src="@drawable/note2"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </FrameLayout>

@@ -21,8 +21,9 @@
             android:textSize="15sp"
             android:text="게임방법
 
-리듬게임
-여기다가 게임방법을 넣으면 된당"
+떨어지는 노트를 곡의 리듬에 따라
+정확한 타이밍에 클릭하여 플레이하는
+리듬게임입니다."
             android:textStyle="bold"
             android:typeface="normal" />
     </LinearLayout>

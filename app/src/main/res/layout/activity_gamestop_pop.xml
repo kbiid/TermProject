@@ -27,24 +27,33 @@
         android:padding="24dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@drawable/testimg">
         <Button
             android:id="@+id/newGame"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:textSize="25dp"
+            android:background="@drawable/btn_img"
             android:text="새로하기"/>
         <Button
             android:id="@+id/gameRestart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:background="@drawable/btn_img"
             android:text="이어하기"/>
         <Button
             android:id="@+id/songChoice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:textSize="25dp"
+            android:background="@drawable/btn_img"
             android:text="곡선택"/>
     </LinearLayout>
 
