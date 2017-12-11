@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.location.LocationManager;
+import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,6 +28,7 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
     private Intent intent;
     private Button btn, stopgameBtn;
     private Music music;
+    private String songName;
     public static ImageView judgeA, judgeB,judgeC,judgeD;
     public static Handler mHandler;
     private int myScore = 0,myCombo = 0;
@@ -38,14 +41,13 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         setContentView(R.layout.activity_game_play);
 
-        Handler handler = new Handler() {
-            public void handleMessage(Message msg) {
-                super.handleMessage(msg);
-                startActivity(new Intent(getApplicationContext(), clearPop.class));
-            }
-        };
-        handler.sendEmptyMessageDelayed(0, 83000);
-        
+            Handler handler = new Handler() {
+                public void handleMessage(Message msg) {
+                    super.handleMessage(msg);
+                    startActivity(new Intent(getApplicationContext(), clearPop.class));
+                }
+            };
+            handler.sendEmptyMessageDelayed(0, 83000);
 
         judgeA = (ImageView)findViewById(R.id.judgeA);
         judgeB = (ImageView)findViewById(R.id.judgeB);
@@ -219,8 +221,7 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-        GamePlayActivity.super.onPause();
-        startActivity(new Intent(this, GamestopPop.class));
+        return;
     }
 
     @Override
@@ -232,7 +233,6 @@ public class GamePlayActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         if(view == stopgameBtn) {
             GamePlayActivity.super.onPause();
-            //startActivity(new Intent(this, GamestopPop.class));
             Intent intent = new Intent(getApplicationContext(), GamestopPop.class);
             bundle = new Bundle();
             bundle.putSerializable("gameData",gameData);
